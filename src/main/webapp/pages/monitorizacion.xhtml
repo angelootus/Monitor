@@ -23,21 +23,6 @@
 			}
 		}
 	</script>
-	<script>
-		function blockDivViewScript(data) {
-			var status = data.status; // Can be "begin", "complete" or "success".
-
-			switch (status) {
-			case "begin": // Before the ajax request is sent.
-				PF("blockDivView").show();
-				break;
-
-			case "success": // After update of HTML DOM based on ajax response..
-				PF("blockDivView").hide();
-				break;
-			}
-		}
-	</script>
 
 	<style>
 .clase {
@@ -96,21 +81,20 @@
 								<p:commandButton icon="fa  fa-th" style="vertical-align: top;"
 									actionListener="#{monitorControlerBean.setView('cuadriculaView')}"
 									ajax="false">
-									<f:ajax onevent="blockDivViewScript" />
+									<f:ajax onevent="blockScript" />
 								</p:commandButton>
 								<p:spacer width="10" height="10" />
 								<p:commandButton icon="fa fa-th-list"
 									style="vertical-align: top;"
 									actionListener="#{monitorControlerBean.setView('listaDetalle')}"
 									ajax="false">
-									<f:ajax onevent="blockDivViewScript" />
+									<f:ajax onevent="blockScript" />
 								</p:commandButton>
 								<p:spacer width="10" height="10" />
 								<p:commandButton icon="fa fa-reorder"
 									actionListener="#{monitorControlerBean.setView('listaSimple')}"
-									style="vertical-align: top;" ajax="false"
-									>
-									<f:ajax onevent="blockDivViewScript" />
+									style="vertical-align: top;" ajax="false">
+									<f:ajax onevent="blockScript" />
 								</p:commandButton>
 								<p:spacer width="10" height="10" />
 								<p:outputLabel>Ordenar por:</p:outputLabel>
@@ -157,12 +141,16 @@
 								<p:commandButton icon="fa fa-angle-left"
 									style="vertical-align: top;"
 									actionListener="#{monitorControlerBean.paginacionMonitor.prev}"
-									ajax="false" />
+									ajax="false">
+									<f:ajax onevent="blockScript" />
+								</p:commandButton>
 								<p:spacer width="10" height="10" />
 								<p:commandButton icon="fa fa-angle-right"
 									style="vertical-align: top;"
 									actionListener="#{monitorControlerBean.paginacionMonitor.next}"
-									ajax="false" />
+									ajax="false">
+									<f:ajax onevent="blockScript" />
+								</p:commandButton>
 							</f:facet>
 
 							<f:facet name="right">
@@ -236,9 +224,9 @@
 									itemLabel="#{sitio.ubicacion} (#{sitio.numFotos})" />
 							</p:selectCheckboxMenu>
 
-						<br/>
-						<br/>
-						<br/>
+							<br />
+							<br />
+							<br />
 							<p:panelGrid columns="2" layout="grid" styleClass="ui-noborder">
 								<p:commandButton value="Limpiar" update="principalForm"
 									process="@this" id="buttonLimpiar"

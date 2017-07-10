@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.annotation.PostConstruct;
@@ -35,7 +36,11 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @ManagedBean
 @RequestScoped
-public class LoadImgServiceControllerBean {
+public class LoadImgServiceControllerBean implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoadImgServiceControllerBean.class);
 	private FotoDTO foto;
 	private StreamedContent fotoMainPage;

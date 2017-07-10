@@ -63,7 +63,8 @@ public class MonitorControlerBean implements Serializable {
 		campanaService = new CampanaService(persistencia.getEntityManager());
 		plazaService = new PlazaService(persistencia.getEntityManager());
 		sitioService = new SitioService(persistencia.getEntityManager());
-		filtrosMonitor.setCveClipro(currentUser.getCliPro().getCveClipro());
+		String cveCliPro =currentUser.getCliPro().getCveClipro();
+		filtrosMonitor.setCveClipro(cveCliPro);
 		plazaDTOList = plazaService.consultaPlazasActivas(currentUser.getCliPro().getCveClipro());
 		campanaDTOList = campanaService.consultaCampanasActivas(currentUser.getCliPro().getCveClipro());
 		sitioDTOList = sitioService.consultaSitiosActivos(currentUser.getCliPro().getCveClipro());
