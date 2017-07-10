@@ -1,0 +1,191 @@
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    /*
+    padding-left: 150px;
+    padding-right: 150px;
+    */
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 1%;
+}
+
+.ui-message-info,.ui-message-error,.ui-message-warn,.ui-message-fatal {
+	border: 0!important;
+	margin: 0!important;
+	padding: 0!important;
+}
+
+.ui-messages-error,.ui-message-error {
+	color: #D8000C;
+	background-color: #fff!important;
+}
+
+.ui-widget-content {
+	/* 
+	border: none!important;	
+	*/
+	border: 1px solid #CEDCE7;	
+	background: #E8F0F4;
+}
+
+.ui-layout-unit-content {
+	border: none!important;	
+}
+
+.ui-widget-header, .blueGradient {
+	/* standard */
+    background: #AAC4DB linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0))!important;
+
+	/* chrome */
+    background: #AAC4DB -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0)))!important;
+
+	/* opera */
+    background: #AAC4DB -o-linear-gradient(center top , rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)) repeat scroll 0 0!important;
+
+	/* firefox */
+    background: #AAC4DB -moz-linear-gradient(center top , rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)) repeat scroll 0 0!important;
+
+    border: 1px solid #a8a8a8;
+    color: #333;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.monitor-background {
+	background-color: #AAC4DB!important;
+}
+
+.nav a:active, .nav a:hover, .nav a:visited {
+	background-color: #AAC4DB!important;
+	/* standard */
+    background: #AAC4DB linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0))!important;
+
+	/* chrome */
+    background: #AAC4DB -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0)))!important;
+
+	/* opera */
+    background: #AAC4DB -o-linear-gradient(center top , rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)) repeat scroll 0 0!important;
+
+	/* firefox */
+    background: #AAC4DB -moz-linear-gradient(center top , rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)) repeat scroll 0 0!important;
+
+    color: #333;
+}
+
+button:active {
+    color: #CEDCE7;
+}
+
+/* .dropdown-menu a:link { */
+.dropdown-menu {
+	background-color: #AAC4DB!important;
+}
+
+/* 
+#formCatalogo\3A pnlCliente, #formCatalogo\3A pnlCliente2, #formCatalogo\3A pnlRbnTipo, #formCatalogo\3A pnlRbnStatus {
+	padding: 20px;
+	border-spacing: 20px;
+    border-collapse: collapse;
+}
+
+#formCatalogo\3A pnlCliente tr, #formCatalogo\3A pnlCliente2 tr, #formCatalogo\3A pnlRbnTipo tr, #formCatalogo\3A pnlRbnStatus tr {
+    border-bottom: 1px solid #C4CCD0;
+}
+*/
+
+#formCatalogo\3A pnlCliente, #formCatalogo\3A pnlCliente2, #formCatalogo\3A pnlCliente3, #formCatalogo\3A pnlRbnTipo, #formCatalogo\3A pnlRbnStatus, #formCatalogo\3A pnlSubPanel
+{
+	padding: 5px;
+	border-spacing: 5px;
+    border-collapse: separate;
+}
+
+
+#formCatalogo\3A pnlCliente input, #formCatalogo\3A pnlCliente2 input, #formCatalogo\3A pnlCliente3 input, #formCatalogo\3A pnlRbnTipo input, #formCatalogo\3A pnlRbnStatus input, #formCatalogo\3A pnlSubPanel input {
+	position: relative;
+	bottom: 7px;
+}
+
+.ui-outputlabel {
+    /* border-bottom: 1px solid #C4CCD0; */
+}
+
+#formCatalogo\3A grid label, #formCatalogo\3A grid1 label { 
+    border-bottom: 1px solid #C4CCD0;
+}
+
+#formCatalogo\3A grid2 tr > td > .ui-outputlabel { 
+    border-bottom: 1px solid #C4CCD0;
+}
+
+.tipos {
+	background: #DDEBF4; 
+    border: 1px solid #AAADAF;
+	width:90%
+}
+
+.botones {
+	margin: 10px;
+	padding: 10px;
+}
+
+div > #formCatalogo\3A grid, div > #formCatalogo\3A grid1, div > #formCatalogo\3A grid2, div > #formCatalogo\3A grid3 
+div > #formCatalogo\3A grid, div > #formCatalogo\3A grid1, div > #formCatalogo\3A grid2, div > #formCatalogo\3A grid3 {
+	background: #E8F0F4;
+	width:100%
+}
+
+div > #formCatalogo\3A gridBotones {
+	background: #CEDCE7;
+	width:100%;
+}
+
+#formCatalogo\3A gridBotones {
+    border: 1px solid #AAADAF;
+}
+
+#paginacion-info {
+	float: right;
+}
+
+#formCatalogo\3A irA {
+	width:40px;
+}
+
+.nombre {
+	width:250px;
+}
+
+.ui-tree-container {
+	background: white;
+    border: 1px solid #AAADAF;
+	width: auto;
+	height: 220px;
+}
+
+.sitios-labels {
+	float: right; 
+	position:relative; 
+	right: 100px;
+}
+
+.sitios-inputs {
+	position:relative; 
+	right: 90px;
+}
+
+.fechaalta-label {
+	float: left; 
+	position:relative; 
+	right: 150px;
+	bottom: 20px;
+}
+
+#formCatalogo\3A rbnOrdenar label, #formCatalogo\3A rbnIluminacion label, #formCatalogo\3A rbnEstatus label  {
+	border-style: none!important;
+}
+
+#formCatalogo\3A tipoUsuario label, #formCatalogo\3A statusUsuario label {
+	border-style: none!important;
+}

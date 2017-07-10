@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!--
+	<property name="logs" value="c:/logs" />
+	<property name="logs" value="monitor.log" />
+    -->
+	<property name="logs" value="/APPS/apache-tomcat-8.0.45/logs/" />
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${logs}monitor.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
+        </encoder>
+    </appender>
+<logger name="com.mkyong.web" level="debug"
+		additivity="false">
+		<appender-ref ref="FILE-THREAD" />
+	</logger>
+
+	<root level="error">
+		<appender-ref ref="FILE-THREAD" />
+	</root>
+
+</configuration>

@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+</h:head>
+<h:body onload="#{catalogoPlaza.init()}">
+	<p:growl id="mensajes" showDetail="true" life="2000" />
+
+
+	<h:form id="formCatalogo" style="height:100%;">
+
+		<p:panel header="Campañas" style="width:100%">
+
+			<h:panelGrid id="grid" columns="1">
+
+				<h:panelGrid id="pnlBotones" columns="4">
+
+					<p:commandButton icon="ui-icon-search" title="Busqueda"></p:commandButton>
+					<p:commandButton icon="ui-icon-trash" title="Eliminar"></p:commandButton>
+					<p:commandButton icon="ui-icon-seek-first" title="Anterior"></p:commandButton>
+					<p:commandButton icon="ui-icon-seek-end" title="Siguiente"></p:commandButton>
+				</h:panelGrid>
+
+
+				<h:panelGrid id="pnlCliente" columns="3">
+
+					<p:outputLabel>Cliente</p:outputLabel>
+					<p:inputNumber id="txtId" value="#{catalogoPlaza.idUsuario}"
+						readonly="true"></p:inputNumber>
+					<p:inputText id="txtEmailInfo" value="#{catalogoPlaza.email}"
+						readonly="true"></p:inputText>
+				</h:panelGrid>
+
+
+				<h:panelGrid id="pnlPlaza1" columns="2">
+
+					<p:outputLabel>Clave Plaza</p:outputLabel>
+					<p:outputLabel id="lblPlaza" value="#{catalogoPlaza.clavePlaza}">
+					</p:outputLabel>
+
+					<p:outputLabel>Plaza</p:outputLabel>
+					<p:selectOneMenu id="console" value="#{catalogoPlaza.plaza}"
+						style="width:125px">
+						<f:selectItem itemLabel="Seleccione una" itemValue="" />
+						<f:selectItem itemLabel="Aguascalientes" itemValue="Aguascalientes" />
+						<f:selectItem itemLabel="Sonora" itemValue="Sonora" />
+						<f:selectItem itemLabel="Guerrero" itemValue="Guerrero" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+
+
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

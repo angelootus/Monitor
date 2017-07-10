@@ -1,0 +1,12 @@
+# Compiled source #
+target/
+Servers/
+build/
+
+# IDE Configuration #
+.classpath
+.project
+.settings
+.faces-config.xml.jsfdia
+.springbeans
+.metadata

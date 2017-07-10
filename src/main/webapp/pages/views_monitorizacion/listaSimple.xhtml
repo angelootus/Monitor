@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+
+</h:head>
+<h:body>
+	<p:dataTable value="#{monitorControlerBean.paginacionMonitor.model}"
+		var="foto">
+		<p:column headerText="Cve Sitio">
+			<h:outputText value="#{foto.sitio.id.cveSitio}" />
+		</p:column>
+
+		<p:column headerText="Campaña">
+			<h:outputText value="#{foto.sitio.campana.nombre}" />
+		</p:column>
+
+		<p:column headerText="Plaza">
+			<h:outputText value="#{foto.sitio.plaza.nombre}" />
+		</p:column>
+
+		<p:column headerText="Dirección">
+			<h:outputText value="#{foto.sitio.ubicacion}" />
+		</p:column>
+		<p:column headerText="Vigencia Campaña">
+			<h:outputText value="Del ">
+			</h:outputText>
+			<h:outputText value="#{foto.sitio.inicia}">
+				<f:convertDateTime type="date" pattern="dd/MMM/yyyy" />
+			</h:outputText>
+			<br />
+			<h:outputText value=" Al ">
+			</h:outputText>
+			<h:outputText value="#{foto.sitio.termina}">
+				<f:convertDateTime type="date" pattern="dd/MMM/yyyy" />
+			</h:outputText>
+		</p:column>
+		<p:column headerText="Iluminación">
+			<c:set var="iluminacionStr"
+				value="#{monitorControlerBean.getIluminacionStr(foto.sitio.iluminacion)}"></c:set>
+			<h:outputText value="#{iluminacionStr}" />
+		</p:column>
+		<p:column headerText="Comentario">
+			<h:outputText value="#{foto.comentario}" />
+		</p:column>
+		<p:column headerText="Fecha captura">
+			<h:outputText value="#{foto.id.fechaHora}">
+				<f:convertDateTime type="date" pattern="dd/MMM/yyyy HH:mm" />
+			</h:outputText>
+		</p:column>
+
+
+	</p:dataTable>
+
+
+
+
+</h:body>
+</html>

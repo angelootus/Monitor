@@ -1,0 +1,109 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+ 	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"	
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+</h:head>
+<h:body onload="#{catalogoCampana.init()}">
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
+
+        <ui:define name="title">Campañas</ui:define>
+
+        <ui:define name="header">
+        </ui:define>
+	
+        <ui:define name="content">
+			<p:growl id="mensajes" showDetail="true" life="2000" />
+		
+		
+			<h:form id="formCatalogo" style="height:100%;">
+		
+				<p:panel header="Campañas" style="width:100%">
+		
+					<h:panelGrid id="gridBotones" columns="1">
+		
+						<h:panelGrid id="pnlBotones" columns="13" styleClass="botones">
+							<p:commandButton icon="ui-icon-search" title="Busqueda" process="@this" update="@([id$=paginacion-info]) @([id$=grid]) @([id$=grid2])" actionListener="#{catalogoCampana.busqueda()}"></p:commandButton>
+							<p:commandButton icon="ui-icon-disk" title="Actualizar" process="@this" update="@([id$=paginacion-info]) @([id$=grid]) @([id$=grid2])" actionListener="#{catalogoCampana.actualizar()}"></p:commandButton>
+							<p:commandButton icon="ui-icon-trash" title="Eliminar" process="@this" update="@([id$=paginacion-info]) @([id$=grid]) @([id$=grid2])" actionListener="#{catalogoCampana.eliminar()}"><p:confirm header="Confirmation" message="Estas seguro?" icon="ui-icon-alert"/></p:commandButton>
+<ui:remove>
+<!-- 
+							<p:commandButton icon="ui-icon-seek-first" title="Anterior" process="@this" update="@([id$=paginacion-info]) @([id$=grid] @([id$=grid2])" actionListener="#{catalogoCampana.prev}"></p:commandButton>
+							<p:commandButton icon="ui-icon-seek-end" title="Siguiente" process="@this" update="@([id$=paginacion-info]) @([id$=grid] @([id$=grid2])" actionListener="#{catalogoCampana.next}"></p:commandButton>
+-->
+</ui:remove>
+							<p:commandButton icon="ui-icon-seek-first" title="Anterior"><f:ajax listener="#{catalogoCampana.prev}" execute="formCatalogo" render="paginacion-info grid grid1 grid2" /></p:commandButton>
+							<p:commandButton icon="ui-icon-seek-end" title="Siguiente"><f:ajax listener="#{catalogoCampana.next}" execute="formCatalogo" render="paginacion-info grid grid1 grid2" /></p:commandButton>
+							<p:commandButton icon="ui-icon-power" title="Logout" action="#{userManager.logout()}"></p:commandButton>
+							<p:commandButton icon="ui-icon-home" title="Home" action="/secured/home.xhtml?faces-redirect=true"><f:ajax /></p:commandButton>
+							<p:outputLabel style="position:relative; left: 10px;" id="paginacion-info">#{catalogoCampana.paginacion.pageIndex+1} of #{catalogoCampana.paginacion.recordsTotal} records</p:outputLabel>
+							<p:outputLabel style="position:relative; left: 30px;"> ir a: </p:outputLabel>
+							<p:inputText id="irA" value="#{catalogoCampana.paginacion.irA}" style="position:relative; left: 35px;" onfocus="mainHelper.changeBackgroundColor(this.id);" onblur="mainHelper.changeBackgroundTransparent(this.id);"></p:inputText>
+							<p:commandButton icon="ui-icon-arrowreturn-1-e" style="position:relative; left: 37px;" title="Ir a registro" process="@this" update="@([id$=paginacion-info]) @([id$=grid]) @([id$=grid1]) @([id$=grid2])" actionListener="#{catalogoCampana.irA()}"></p:commandButton>
+						</h:panelGrid>
+					</h:panelGrid>
+
+					<h:panelGrid id="grid" columns="1">
+			
+						<h:panelGrid id="pnlCliente" columns="3">
+							<p:outputLabel>Cliente:</p:outputLabel>
+							<p:inputText id="txtCliente" value="#{catalogoCampana.campana.clipro.cveClipro}" onfocus="mainHelper.changeBackgroundColor(this.id);" onblur="mainHelper.changeBackgroundTransparent(this.id);" disabled="true"></p:inputText>
+							<p:inputText id="txtClienteNombre" value="#{catalogoCampana.campana.clipro.nombre}" onfocus="mainHelper.changeBackgroundColor(this.id);" onblur="mainHelper.changeBackgroundTransparent(this.id);" disabled="true"></p:inputText>
+						</h:panelGrid>
+						
+					</h:panelGrid>
+			
+					<h:panelGrid id="grid1" columns="3">
+						<h:panelGrid id="pnlCliente2" columns="2">
+							<p:outputLabel>Clave Campaña:</p:outputLabel>
+							<p:inputText id="txtCveCampana" value="#{catalogoCampana.campana.cveCampana}" onfocus="mainHelper.changeBackgroundColor(this.id);" onblur="mainHelper.changeBackgroundTransparent(this.id);" disabled="true"></p:inputText>
+			
+							<p:outputLabel>Nombre Campaña:</p:outputLabel>
+							<p:inputText id="txtNombre" value ="#{catalogoCampana.campana.nombre}" onfocus="mainHelper.changeBackgroundColor(this.id);" onblur="mainHelper.changeBackgroundTransparent(this.id);" styleClass="nombre"></p:inputText>
+			
+							<p:outputLabel>Inicia</p:outputLabel>
+							<p:calendar id="txtInicia" value="#{catalogoCampana.campana.inicia}" onfocus="mainHelper.changeBackgroundColor(this.id);" onblur="mainHelper.changeBackgroundTransparent(this.id);"></p:calendar>
+			
+							<p:outputLabel>Termina</p:outputLabel>
+							<p:calendar id="txtTermina" value="#{catalogoCampana.campana.termina}" onfocus="mainHelper.changeBackgroundColor(this.id);" onblur="mainHelper.changeBackgroundTransparent(this.id);"></p:calendar>
+			
+						</h:panelGrid>
+						
+						<h:panelGrid id="pnlCliente3" columns="2" styleClass="fechaalta-label">
+							<p:outputLabel>Fecha Alta</p:outputLabel>
+<ui:remove>
+<!-- 
+							<p:calendar id="txtFechaAlta" value="#{catalogoCampana.campana.fechaalta}" onfocus="mainHelper.changeBackgroundColor(this.id);" onblur="mainHelper.changeBackgroundTransparent(this.id);" disabled="true"></p:calendar>
+-->
+</ui:remove>                                        
+							<p:inputText id="txtFechaAlta" value="#{catalogoCampana.campana.fechaalta}" onfocus="mainHelper.changeBackgroundColor(this.id);" onblur="mainHelper.changeBackgroundTransparent(this.id);" disabled="true"><f:convertDateTime pattern="M/d/y"/></p:inputText>							
+						</h:panelGrid>
+					</h:panelGrid>
+			
+					<h:panelGrid id="grid2" columns="1">
+						<p:panel header="Status Campaña" styleClass="tipos" style="width: 50%">
+							<h:panelGroup id="pnlRbnStatus" columns="2">
+								<p:selectOneRadio id="statusCampana" value="#{catalogoCampana.campana.status}">
+									<f:selectItem itemLabel="Activo" itemValue="1" />
+									<f:selectItem itemLabel="Inactivo" itemValue="2" />
+								</p:selectOneRadio>
+							</h:panelGroup>
+						</p:panel>
+						<h:inputHidden id="txtClienteHidden" value="#{catalogoUsuarios.usuario.clipro.cveClipro}" />
+						<h:inputHidden id="txtCveCampanaHidden" value="#{catalogoCampana.campana.cveCampana}" />
+						<h:inputHidden id="txtClienteNombreHidden" value="#{catalogoCampana.campana.clipro.nombre}" />
+					</h:panelGrid>
+				</p:panel>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+					<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+				</p:confirmDialog>
+			</h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

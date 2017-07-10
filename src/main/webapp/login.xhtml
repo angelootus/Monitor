@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Login</title>
+	<!-- 	<f:metadata> -->
+	<!-- 		<f:viewAction action="#{userManager.isLoggedInForwardHome()}" /> -->
+	<!-- 	</f:metadata> -->
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/> -->
+	<style>
+body {
+	background-image: url("#{resource['img/fondo.jpg']}");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.login-form {
+	text-align: center;
+	width: 300px;
+	height: auto;
+	position: absolute;
+	background: rgba(255, 255, 255, 0.7);
+	left: 40%;
+	top: 30%;
+	display: block;
+}
+
+.title {
+	margin: 30px;
+	font-weight: bold;
+}
+
+.spacing {
+	margin: 10px !important;
+}
+
+.input-text {
+	border-radius: 0px !important;
+	text-align: center;
+	font-size: 80% !important;
+	padding: 10px 0px 10px 0px !important;
+	width: 80%;
+}
+
+.buttom {
+	padding: 5px !important;
+	border: 5px !important;
+	border-radius: 0px !important;
+	width: 80% !important;
+	background: #0544aa !important;
+	color: white;
+	border: 5px !important;
+	border-radius: 0px !important;
+	width: 80% !important;
+	background: #0544aa !important;
+	color: white;
+	font-size: 80%;
+	border-radius: 0px !important;
+	width: 80% !important;
+	background: #0544aa !important;
+	color: white;
+	border: 5px !important;
+	border-radius: 0px !important;
+	width: 80% !important;
+	background: #0544aa !important;
+	color: white;
+}
+
+.fa {
+	margin-top: 2px;
+	opacity: 0.7;
+}
+
+.footer {
+	padding: 5px !important;
+	background: white !important;
+}
+</style>
+
+
+</h:head>
+
+<h:body>
+
+	<h:form>
+		<p:growl id="messages" showDetail="false" autoUpdate="true" closable="true"
+			life="1500" />
+
+
+		<div class="login-form">
+			<div class="title">
+				<p:outputLabel>Iniciar Sesión</p:outputLabel>
+			</div>
+			<div class="contain">
+				<i class="fa fa-user fa-2x"></i>
+				<p:inputText styleClass="spacing input-text" id="userName"
+					placeholder="email" value="#{userManager.email}" required="true">
+					<f:validateLength minimum="3" />
+				</p:inputText>
+				<i class="fa fa-lock fa-2x"></i>
+				<p:password styleClass="spacing input-text" id="password"
+					placeholder="contraseña" value="#{userManager.userPassword}"
+					required="true" />
+				<p:commandButton styleClass="spacing buttom" value="Iniciar Sesión"
+					update="messages" action="#{userManager.login()}" />
+			</div>
+			<div class="footer">
+				<p:selectBooleanCheckbox />
+				Recordarme la próxima vez
+			</div>
+		</div>
+	</h:form>
+
+</h:body>
+</html>

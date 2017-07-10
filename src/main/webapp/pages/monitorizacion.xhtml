@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:head>
+	<script type='text/javascript'>
+		function blockScript(data) {
+			var status = data.status; // Can be "begin", "complete" or "success".
+
+			switch (status) {
+			case "begin": // Before the ajax request is sent.
+				PF("block").show();
+				break;
+
+			case "success": // After update of HTML DOM based on ajax response..
+				PF("block").hide();
+				break;
+			}
+		}
+	</script>
+	<script>
+		function blockDivViewScript(data) {
+			var status = data.status; // Can be "begin", "complete" or "success".
+
+			switch (status) {
+			case "begin": // Before the ajax request is sent.
+				PF("blockDivView").show();
+				break;
+
+			case "success": // After update of HTML DOM based on ajax response..
+				PF("blockDivView").hide();
+				break;
+			}
+		}
+	</script>
+
+	<style>
+.clase {
+	bottom: 0px;
+	display: inline-block;
+	float: right;
+	top: 80px;
+	position: relative;
+}
+</style>
+</h:head>
+<h:body>
+	<h:form id="principalForm">
+		<p:blockUI block="principalForm" widgetVar="block">
+			<h:panelGrid columns="2">
+				<h:graphicImage value="/resources/img/load.gif" />
+			</h:panelGrid>
+		</p:blockUI>
+		<p:blockUI block="principalForm" widgetVar="blockDivView">
+			<h:panelGrid columns="2">
+				<h:graphicImage value="/resources/img/load.gif" />
+			</h:panelGrid>
+		</p:blockUI>
+		<p:growl id="msgs" showDetail="true" />
+		<div class="ui-g">
+			<div class="ui-g-12 ui-md-6 ui-lg-12">
+				<div class="ui-g">
+					<div class="ui-g-12 ui-md-3 ui-lg-6">
+						<p:graphicImage value="/resources/img/monitorexacto.png"
+							width="150" height="90">
+						</p:graphicImage>
+					</div>
+					<div class="ui-g-12 ui-md-3 ui-lg-6">
+						<div class="clase">
+							<p:outputLabel size="5"
+								value="Fotos encontradas: #{monitorControlerBean.fotolistMostrar.size()}"></p:outputLabel>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<p:panel header="Monitorización"
+			style="width:99%;background: #E8F0F4; margin: 0 auto;">
+
+
+			<div class="ui-g">
+
+				<div class="ui-g-12 ui-md-6 ui-lg-12">
+					<h:panelGrid id="gridBotones" style="margin: 0 auto;">
+						<p:toolbar style="background: #CEDCE7;color:#0d0d0d !important;">
+							<f:facet name="left">
+								<p:spacer width="80" height="10" />
+								<p:outputLabel>Mostrar:</p:outputLabel>
+								<p:spacer width="10" height="10" />
+								<p:commandButton icon="fa  fa-th" style="vertical-align: top;"
+									actionListener="#{monitorControlerBean.setView('cuadriculaView')}"
+									ajax="false">
+									<f:ajax onevent="blockDivViewScript" />
+								</p:commandButton>
+								<p:spacer width="10" height="10" />
+								<p:commandButton icon="fa fa-th-list"
+									style="vertical-align: top;"
+									actionListener="#{monitorControlerBean.setView('listaDetalle')}"
+									ajax="false">
+									<f:ajax onevent="blockDivViewScript" />
+								</p:commandButton>
+								<p:spacer width="10" height="10" />
+								<p:commandButton icon="fa fa-reorder"
+									actionListener="#{monitorControlerBean.setView('listaSimple')}"
+									style="vertical-align: top;" ajax="false"
+									>
+									<f:ajax onevent="blockDivViewScript" />
+								</p:commandButton>
+								<p:spacer width="10" height="10" />
+								<p:outputLabel>Ordenar por:</p:outputLabel>
+								<p:spacer width="10" height="10" />
+								<p:selectOneMenu id="orderBy" style="width:100px;"
+									value="#{monitorControlerBean.filtrosMonitor.ordenarPor}">
+									<f:selectItem itemLabel="" itemValue=""></f:selectItem>
+									<f:selectItem itemLabel="Plaza" itemValue="Plaza"></f:selectItem>
+									<f:selectItem itemLabel="Sitio" itemValue="Sitio"></f:selectItem>
+									<f:selectItem itemLabel="Campana" itemValue="Campana"></f:selectItem>
+									<f:selectItem itemLabel="Fecha" itemValue="Fecha"></f:selectItem>
+									<f:ajax event="change"
+										listener="#{monitorControlerBean.getFotosToShow()}"
+										render="principalForm" onevent="blockScript" execute="orderBy" />
+								</p:selectOneMenu>
+								<p:spacer width="8" height="10" />
+								<p:outputLabel>Por página:</p:outputLabel>
+								<p:spacer width="8" height="10" />
+								<p:selectOneMenu id="registroPorPagina" style="width:50px;"
+									value="#{monitorControlerBean.paginacionMonitor.defaultRegistros}">
+									<f:selectItem itemLabel="10" itemValue="10"></f:selectItem>
+									<f:selectItem itemLabel="20" itemValue="20"></f:selectItem>
+									<f:selectItem itemLabel="50" itemValue="50"></f:selectItem>
+									<f:ajax event="change" execute="registroPorPagina"
+										render="principalForm" onevent="blockScript" />
+								</p:selectOneMenu>
+								<p:spacer width="8" height="10" />
+								<p:outputLabel>Página: </p:outputLabel>
+								<p:spacer width="8" height="10" />
+								<p:inputText size="5" style="vertical-align: top;"
+									value="#{monitorControlerBean.paginacionMonitor.pageIndex}"
+									id="pagina"
+									onkeypress="if (event.keyCode == 13) {onchange(); return false; }">
+									<f:ajax event="change"
+										execute="#{monitorControlerBean.irPagina()}"
+										render="principalForm" onevent="blockScript" />
+								</p:inputText>
+								<p:spacer width="8" height="10" />
+								<p:outputLabel>De: </p:outputLabel>
+								<p:spacer width="8" height="10" />
+								<p:outputLabel size="5"
+									value="#{monitorControlerBean.paginacionMonitor.pages}" id="de"></p:outputLabel>
+								<p:spacer width="8" height="10" />
+								<p:commandButton icon="fa fa-angle-left"
+									style="vertical-align: top;"
+									actionListener="#{monitorControlerBean.paginacionMonitor.prev}"
+									ajax="false" />
+								<p:spacer width="10" height="10" />
+								<p:commandButton icon="fa fa-angle-right"
+									style="vertical-align: top;"
+									actionListener="#{monitorControlerBean.paginacionMonitor.next}"
+									ajax="false" />
+							</f:facet>
+
+							<f:facet name="right">
+								<p:spacer width="10" height="10" />
+								<p:menuButton icon="fa fa-download">
+									<p:menuitem value="Fotos consulta" update="msgs" ajax="false"
+										actionListener="#{loadImgServiceControllerBean.dowload(monitorControlerBean.fotolistMostrar)}">
+									</p:menuitem>
+									<p:menuitem value="Fotos usuario"
+										actionListener="#{loadImgServiceControllerBean.dowloadPorUsuario(userManager.currentUser.cliPro.cveClipro)}"
+										update="msgs" ajax="false" />
+									<p:menuitem value="Descargar PDF"
+										actionListener="#{loadImgServiceControllerBean.downloadPDF(monitorControlerBean.fotolistMostrar)}"
+										update="msgs" ajax="false" />
+								</p:menuButton>
+								<p:spacer width="10" height="10" />
+								<p:commandButton icon="fa fa-home"
+									action="#{userManager.toHome()}" style="vertical-align: top;"
+									ajax="false">
+								</p:commandButton>
+							</f:facet>
+						</p:toolbar>
+					</h:panelGrid>
+
+
+
+
+
+
+				</div>
+			</div>
+			<div class="ui-g" id="divMain">
+				<div class="ui-g-3">
+					<div class="ui-fluid">
+						<p:panel align="center" id="menuIzquierdo"
+							style="font-size: small;">
+							<h2>Fecha captura</h2>
+							<p:outputLabel for="fechaInicioC" value="Fecha de inicio:" />
+							<p:calendar id="fechaInicioC"
+								value="#{monitorControlerBean.filtrosMonitor.fechaInicio}" />
+							<p:separator style="border: none;"></p:separator>
+							<p:outputLabel for="fechaFinC" value="Fecha de fin:" />
+							<p:calendar id="fechaFinC"
+								value="#{monitorControlerBean.filtrosMonitor.fechaFin}" />
+							<h2>Campaña</h2>
+							<p:selectCheckboxMenu id="CampanaCheck"
+								value="#{monitorControlerBean.filtrosMonitor.filterCampana}"
+								label="Campana" multiple="true" style="font-size: xx-small;"
+								filter="true" filterMatchMode="startsWith">
+								<f:selectItems value="#{monitorControlerBean.campanaDTOList}"
+									var="campana" itemValue="#{campana.cveCampana}"
+									itemLabel="#{campana.nombre} (#{campana.numFotos})" />
+							</p:selectCheckboxMenu>
+							<h2>Plaza</h2>
+							<p:selectCheckboxMenu id="PlazaCheck" label="Plaza"
+								value="#{monitorControlerBean.filtrosMonitor.filterPlaza}"
+								layout="grid" columns="2" style="font-size: xx-small;"
+								multiple="true">
+								<f:selectItems value="#{monitorControlerBean.plazaDTOList}"
+									var="plaza" itemValue="#{plaza.cvePlaza}"
+									itemLabel="#{plaza.nombre} (#{plaza.numFotos})" />
+							</p:selectCheckboxMenu>
+
+							<h2>Sitio</h2>
+							<p:selectCheckboxMenu id="CsitioCheck" label="Sitio"
+								layout="pageDirection"
+								value="#{monitorControlerBean.filtrosMonitor.filterSitio}"
+								style="font-size: xx-small;" multiple="true">
+								<f:selectItems value="#{monitorControlerBean.sitioDTOList}"
+									var="sitio" itemValue="#{sitio.cveSitio}"
+									itemLabel="#{sitio.ubicacion} (#{sitio.numFotos})" />
+							</p:selectCheckboxMenu>
+
+						<br/>
+						<br/>
+						<br/>
+							<p:panelGrid columns="2" layout="grid" styleClass="ui-noborder">
+								<p:commandButton value="Limpiar" update="principalForm"
+									process="@this" id="buttonLimpiar"
+									actionListener="#{monitorControlerBean.removeFilter()}"
+									ajax="false">
+									<f:ajax onevent="blockScript" />
+								</p:commandButton>
+
+								<p:commandButton value="Filtrar" id="buttonFiltrar"
+									actionListener="#{monitorControlerBean.getFotosToShow()}"
+									update="principalForm" ajax="false">
+									<f:ajax onevent="blockScript" />
+								</p:commandButton>
+							</p:panelGrid>
+
+
+
+
+
+						</p:panel>
+
+					</div>
+				</div>
+				<div class="ui-g-12 ui-md-6 ui-lg-9">
+					<div class="ui-g">
+						<div class="ui-g-12 ui-md-6 ui-lg-12" jsf:id="divView">
+
+							<ui:include
+								src="/pages/views_monitorizacion/#{monitorControlerBean.view}.xhtml"></ui:include>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		</p:panel>
+
+
+		<br />
+		<p:dialog id="viewMapId" widgetVar="viewMap" width="1100px"
+			height="450px" maximizable="false" resizable="false"
+			position="center top">
+			<h:form>
+				<h:outputText
+					value="#{loadMapControllerBean.foto.latitudGps},#{loadMapControllerBean.foto.longitudGps}" />
+				<f:view contentType="text/html">
+					<p:gmap id="gmap"
+						center="#{loadMapControllerBean.foto.latitudGps},#{loadMapControllerBean.foto.longitudGps}"
+						zoom="15" type="HYBRID" style="width:100%;height:400px" />
+				</f:view>
+			</h:form>
+
+		</p:dialog>
+
+	</h:form>
+	<script type='text/javascript'
+		src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAkpckv0G8amuZ5h8hTNK3D7Yj6e4T61hg'
+		async="defer"></script>
+</h:body>
+</html>

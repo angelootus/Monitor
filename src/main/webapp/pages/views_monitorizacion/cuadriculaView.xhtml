@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+<h:body>
+	<p:dataGrid style="border:10px;"
+		value="#{monitorControlerBean.paginacionMonitor.model}" var="foto"
+		columns="3" layout="grid">
+		<p:dialog widgetVar="viewImg" id="viewImgOriginal" width="1100px"
+			height="550px" maximizable="false" resizable="false"
+			position="center top">
+			<div align="center">
+				<p:graphicImage value="#{loadImgServiceControllerBean.fotoOriginal}"
+					id="imgView">
+					<f:param name="pathFoto" value="#{foto.fotoPath}"></f:param>
+				</p:graphicImage>
+			</div>
+		</p:dialog>
+
+		<br />
+		<p:panelGrid columns="2" style="font-size: small;">
+			<f:facet name="header">
+				<br />
+				<p:commandLink oncomplete="PF('viewImg').show()"
+					update="viewImgOriginal">
+					<p:graphicImage
+						value="#{loadImgServiceControllerBean.fotoMainPage}">
+						<f:param name="pathFoto" value="#{foto.fotoPath}"></f:param>
+					</p:graphicImage>
+				</p:commandLink>
+				<br />
+				<h:outputText value="Cve Sitio:" />
+				<p:spacer width="10" height="10" />
+				<h:outputText value="#{foto.sitio.id.cveSitio}" />
+			</f:facet>
+			<h:outputText value="Campaña:" />
+			<h:outputText value="#{foto.sitio.campana.nombre}" />
+
+			<h:outputText value="Plaza:" />
+			<h:outputText value="#{foto.sitio.plaza.nombre}" />
+
+			<h:outputText value="Dirección:" />
+			<h:outputText value="#{foto.sitio.ubicacion}" />
+
+			<h:outputText value="Fecha captura:" />
+			<h:outputText value="#{foto.id.fechaHora}">
+				<f:convertDateTime type="date" pattern="dd/MMM/yyyy HH:mm" />
+			</h:outputText>
+
+			<h:outputText value="Ver en mapa:" />
+			<p:commandButton icon="fa fa-map-marker"
+				action="#{loadMapControllerBean.setFoto(foto)}"
+				oncomplete="PF('viewMap').show();" update="principalForm:viewMapId" />
+			<f:facet name="footer">
+				<div align="center">
+					<h:outputText value="Del ">
+					</h:outputText>
+					<h:outputText value="#{foto.sitio.inicia}">
+						<f:convertDateTime type="date" pattern="dd/MMM/yyyy" />
+					</h:outputText>
+					<h:outputText value=" Al ">
+					</h:outputText>
+					<h:outputText value="#{foto.sitio.termina}">
+						<f:convertDateTime type="date" pattern="dd/MMM/yyyy" />
+					</h:outputText>
+				</div>
+			</f:facet>
+
+		</p:panelGrid>
+		<br />
+	</p:dataGrid>
+
+
+</h:body>
+</html>

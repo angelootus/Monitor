@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+<hibernate-reverse-engineering>
+	<schema-selection match-schema="MONITOR" match-table="PLAZA" />
+	<schema-selection match-schema="MONITOR" match-table="CAMPANA" />
+	<schema-selection match-schema="MONITOR" match-table="CLI_PRO" />
+	<schema-selection match-schema="MONITOR" match-table="FOTO" />
+	<schema-selection match-schema="MONITOR" match-table="SITIO" />
+	<schema-selection match-schema="MONITOR" match-table="SOPORTE" />
+	<schema-selection match-schema="MONITOR" match-table="USUARIO" />
+</hibernate-reverse-engineering>
