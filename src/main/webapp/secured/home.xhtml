@@ -68,7 +68,8 @@
 	<style>
 body {
 	margin: 0;
-	background-image: url("#{resource['img/FONDOAZUL2.png']}");
+/* 	background-image: url("#{resource['img/FONDOAZUL2.png']}"); */
+	background-color:#E8F0F4;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -167,8 +168,8 @@ p:hover i {
 .izq {
 	float: left;
 	position: relative;
-	top: 30px;
-	left: 30px;
+	/* 	top: 30px; */
+	/* 	left: 30px; */
 }
 
 .dropdown-content:hover ~.camp {
@@ -222,83 +223,86 @@ p:hover i {
 		<section class="header"> <header> <figure
 			class="logotipo"> <img
 			src="#{resource['img/monitorexacto.png']}" width="150" height="90"
-			alt="logo" /> </figure>
-			<p:commandLink id="logout" styleClass="blue" style="float:right;color:black;margin-top:75px;margin-right:15px;text-decoration:underline;font-size: 26px;color: #00a0e7;"
-							action="#{userManager.logout}">Salir</p:commandLink>
+			alt="logo" /> </figure> <p:commandLink id="logout" styleClass="blue"
+			style="float:right;color:black;margin-top:75px;margin-right:15px;text-decoration:underline;font-size: 26px;color: #00a0e7;"
+			action="#{userManager.logout}">Salir</p:commandLink>
 		<div class="name">
-			<p:outputLabel
-				value="Bienvenido: " />
+			<p:outputLabel value="Bienvenido: " />
 			<p:outputLabel
 				value="#{userManager.currentUser.nombre}  #{userManager.currentUser.apellidos}" />
 		</div>
-		<div class="dropdown">
-			<i class="fa fa-align-justify fa-2x"></i><span class="menu">MENU</span>
-			<div class="dropdown-content">
+<!-- 		<div class="dropdown"> -->
+<!-- 			<i class="fa fa-align-justify fa-2x"></i><span class="menu">MENU</span> -->
+<!-- 			<div class="dropdown-content"> -->
 
-				<ul>
-					<li id="licampana"><a
-						href="#{request.contextPath}/pages/CatalogoCampana.xhtml" style="font-size: 25px;">Campañas</a></li>
-					<!--      <li id="liplazas"><a href="#">PLAZAS</a></li> -->
-					<li id="lisitio"><a
-						href="#{request.contextPath}/pages/CatalogoSitios.xhtml" style="font-size: 25px;">Sitios</a></li>
-					<li id="liusuario"><a
-						href="#{request.contextPath}/pages/CatalogoUsuarios.xhtml" style="font-size: 25px;">Usuarios</a></li>
-					<li id="limonitorizacion"><a
-						href="#{request.contextPath}/pages/monitorizacion.xhtml" style="font-size: 25px;">Monitorización</a></li>
-					<li id="lisoporte"><a href="#" style="font-size: 25px;">Soporte</a></li>
-					<li id="liacerca"><h:outputLink id="openDialogLink"
-							value="javascript:void(0)"  onclick="PF('dlgVersion').show();" style="font-size: 25px;">Acerca de</h:outputLink></li>
-				</ul>
-			</div>
-			<div id="divcampana" class="camp">
-<!-- 				<img src="#{resource['img/ico-cam.png']}" width="150" height="90" -->
-<!-- 					alt="logo" /> -->
-				<p>Este es un mensaje de campañas</p>
-			</div>
-			<div id="divplazas" class="camp">
-<!-- 				<img src="#{resource['img/ico-pla.png']}" width="150" height="90" -->
-<!-- 					alt="logo" /> -->
-				<p>Este es un mensaje de plazas</p>
-			</div>
-			<div id="divsitio" class="camp">
-<!-- 				<img src="#{resource['img/ico-sit.png']}" width="150" height="90" -->
-<!-- 					alt="logo" /> -->
-				<p>Este es un mensaje de sitios</p>
-			</div>
-			<div id="divusuario" class="camp">
-<!-- 				<img src="#{resource['img/ico-usr.png']}" width="150" height="90" -->
-<!-- 					alt="logo" /> -->
-				<p>Este es un mensaje de usuarios</p>
-			</div>
-			<div id="divmonitorizacion" class="camp">
-<!-- 				<img src="#{resource['img/ico-mon.png']}" width="150" height="90" -->
-<!-- 					alt="logo" /> -->
-				<p>Este es un mensaje de monitorizacion</p>
-			</div>
-			<div id="divsoporte" class="camp">
-<!-- 				<img src="#{resource['img/ico-sop.png']}" width="150" height="90" -->
-<!-- 					alt="logo" /> -->
-				<p>Este es un mensaje de soporte</p>
-			</div>
-			<div id="divacerca" class="camp">
-<!-- 				<img src="#{resource['img/ico-ace.png']}" width="150" height="90" -->
-<!-- 					alt="logo" /> -->
-				<p>Este es un mensaje de acerca de</p>
-			</div>
-		</div>
+<!-- 				<ul> -->
+<!-- 					<li id="licampana"><a -->
+<!-- 						href="#{request.contextPath}/pages/CatalogoCampana.xhtml" -->
+<!-- 						style="font-size: 25px;">Campañas</a></li> -->
+<!-- 					     <li id="liplazas"><a href="#">PLAZAS</a></li> -->
+<!-- 					<li id="lisitio"><a -->
+<!-- 						href="#{request.contextPath}/pages/CatalogoSitios.xhtml" -->
+<!-- 						style="font-size: 25px;">Sitios</a></li> -->
+<!-- 					<li id="liusuario"><a -->
+<!-- 						href="#{request.contextPath}/pages/CatalogoUsuarios.xhtml" -->
+<!-- 						style="font-size: 25px;">Usuarios</a></li> -->
+<!-- 					<li id="limonitorizacion"><a -->
+<!-- 						href="#{request.contextPath}/pages/monitorizacion.xhtml" -->
+<!-- 						style="font-size: 25px;">Monitorización</a></li> -->
+<!-- 					<li id="lisoporte"><a href="#" style="font-size: 25px;">Soporte</a></li> -->
+<!-- 					<li id="liacerca"><h:outputLink id="openDialogLink" -->
+<!-- 							value="javascript:void(0)" onclick="PF('dlgVersion').show();" -->
+<!-- 							style="font-size: 25px;">Acerca de</h:outputLink></li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
+<!-- 			<div id="divcampana" class="camp"> -->
+<!-- 								<img src="#{resource['img/ico-cam.png']}" width="150" height="90" -->
+<!-- 									alt="logo" /> -->
+<!-- 				<p>Este es un mensaje de campañas</p> -->
+<!-- 			</div> -->
+<!-- 			<div id="divplazas" class="camp"> -->
+<!-- 								<img src="#{resource['img/ico-pla.png']}" width="150" height="90" -->
+<!-- 									alt="logo" /> -->
+<!-- 				<p>Este es un mensaje de plazas</p> -->
+<!-- 			</div> -->
+<!-- 			<div id="divsitio" class="camp"> -->
+<!-- 								<img src="#{resource['img/ico-sit.png']}" width="150" height="90" -->
+<!-- 									alt="logo" /> -->
+<!-- 				<p>Este es un mensaje de sitios</p> -->
+<!-- 			</div> -->
+<!-- 			<div id="divusuario" class="camp"> -->
+<!-- 								<img src="#{resource['img/ico-usr.png']}" width="150" height="90" -->
+<!-- 									alt="logo" /> -->
+<!-- 				<p>Este es un mensaje de usuarios</p> -->
+<!-- 			</div> -->
+<!-- 			<div id="divmonitorizacion" class="camp"> -->
+<!-- 								<img src="#{resource['img/ico-mon.png']}" width="150" height="90" -->
+<!-- 									alt="logo" /> -->
+<!-- 				<p>Este es un mensaje de monitorizacion</p> -->
+<!-- 			</div> -->
+<!-- 			<div id="divsoporte" class="camp"> -->
+<!-- 								<img src="#{resource['img/ico-sop.png']}" width="150" height="90" -->
+<!-- 									alt="logo" /> -->
+<!-- 				<p>Este es un mensaje de soporte</p> -->
+<!-- 			</div> -->
+<!-- 			<div id="divacerca" class="camp"> -->
+<!-- 								<img src="#{resource['img/ico-ace.png']}" width="150" height="90" -->
+<!-- 									alt="logo" /> -->
+<!-- 				<p>Este es un mensaje de acerca de</p> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 		<p:dialog id="version" widgetVar="dlgVersion" header="Versión"
-				resizable="false" showEffect="clip" hideEffect="clip">
-				<img src="#{resource['img/monitorexacto.png']}" alt="logo" />
-				<br/>
-				<h:outputLabel styleClass="orange" value="Versión "></h:outputLabel>
-				<h:outputLabel styleClass="blue" value="1.0"></h:outputLabel>
-				<br/>
-				<h:outputLabel styleClass="blue" value="© Derechos Reservados"></h:outputLabel>
-				<br/>
-				<h:outputLabel styleClass="blue" value="Monitoreo Exacto S.A de C.V."></h:outputLabel>
-				
-			</p:dialog>
-		</header> </section>
+			resizable="false" showEffect="clip" hideEffect="clip">
+			<img src="#{resource['img/monitorexacto.png']}" alt="logo" />
+			<br />
+			<h:outputLabel styleClass="orange" value="Versión "></h:outputLabel>
+			<h:outputLabel styleClass="blue" value="1.0"></h:outputLabel>
+			<br />
+			<h:outputLabel styleClass="blue" value="© Derechos Reservados"></h:outputLabel>
+			<br />
+			<h:outputLabel styleClass="blue" value="Monitoreo Exacto S.A de C.V."></h:outputLabel>
+
+		</p:dialog> </header> </section>
 		<section class="contain">
 		<div class="descripciondiv">
 			<div class="descripcion">
@@ -307,7 +311,28 @@ p:hover i {
 			</div>
 		</div>
 		<div class="izq">
-		
+			<p:menu>
+				<p:submenu label="MENU PRINCIPAL" style="align:center;">
+				</p:submenu>
+				<p:submenu label="Monitor" icon="ui-icon-folder-open">
+					<p:menuitem value="Monitorizacion" url="/pages/monitorizacion.xhtml" icon=" ui-icon-clipboard" />
+				</p:submenu>
+				<p:submenu label="Catalogos" icon="ui-icon-folder-open">
+					<p:menuitem value="Campañas"  url="/pages/CatalogoCampana.xhtml" icon="ui-icon-suitcase" />
+					<p:menuitem value="Plazas" url="/pages/CatalogoPlazas.xhtml" icon="ui-icon-tag" />
+					<p:menuitem value="Sitios" url="/pages/CatalogoSitios.xhtml" icon="ui-icon-pin-s" />
+					<p:menuitem value="Usuarios" url="/pages/CatalogoUsuarios.xhtml" icon="ui-icon-contact" />
+				</p:submenu>
+				<p:submenu label="Login" icon="ui-icon-folder-open">
+					<p:menuitem value="Cambiar de usuario" url="" icon="ui-icon-person" />
+					<p:menuitem value="Cambiar contraseña" url="" icon="ui-icon-gear" />
+				</p:submenu>
+				<p:submenu label="Miscelaneos" icon="ui-icon-folder-open">
+					<p:menuitem value="Soporte" url="#" icon="ui-icon-wrench" />
+					<p:menuitem value="Acerca de.." onclick="PF('dlgVersion').show();"
+						icon="ui-icon-star" />
+				</p:submenu>
+			</p:menu>
 		</div>
 		</section>
 	</h:form>

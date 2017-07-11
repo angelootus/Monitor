@@ -42,4 +42,8 @@ public class UsuarioService {
 		return usuariosList;
 	}
 	
+	public void insertarUsuario(Usuario usuario){
+		usuarioDao.insertar(usuario);
+	}
+	
 }

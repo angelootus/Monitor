@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import com.monitor.filter.Filtros;
 import com.monitor.filter.FiltrosUsuario;
 import com.monitor.model.CliPro;
+import com.monitor.model.Usuario;
 
 public class UsuarioDao implements MonitorDao {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UsuarioDao.class);
@@ -39,6 +40,19 @@ public class UsuarioDao implements MonitorDao {
 			q.setParameter("nombre", Arrays.asList(nombre));
 		}
 		return q.getResultList();
+	}
+	
+	public void insertar(Usuario usuario){
+		entityManager.clear();
+		entityManager.getTransaction().begin();
+		
+		try {
+			entityManager.persist(usuario);
+		} catch (Exception e) {
+			e.getStackTrace();
+			LOGGER.error(e.getMessage());
+			entityManager.getTransaction().rollback();
+		}
 	}
 
 
